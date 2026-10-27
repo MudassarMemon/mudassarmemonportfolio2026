@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mudassar Memon | Software Engineer — Full-Stack & Automation Architecture</title>
+  <meta name="description" content="Portfolio of Mudassar Memon — Software Engineer specializing in Full-Stack Development (React, Next.js, TypeScript, Rails, Node.js) and Automation & Reliability Engineering." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            slate: {
+              950: '#060913',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #060913;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    /* Architectural Blueprint Grid Background */
+    .bg-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+    .card-hover {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 130, 246, 0.45);
+      box-shadow: 0 12px 32px -10px rgba(37, 99, 235, 0.25);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #060913; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+  </style>
+</head>
+<body class="bg-grid antialiased selection:bg-blue-500/30 selection:text-blue-200">
+
+  <!-- Ambient Glows -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[128px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[128px] pointer-events-none -z-10"></div>
+
+  <!-- Navigation Header -->
+  <header class="fixed top-0 inset-x-0 z-40 glass border-b border-slate-800/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center font-mono font-bold text-white shadow-lg shadow-blue-500/20 group-hover:scale-105 transition">
+          MM
+        </div>
+        <div>
+          <span class="font-bold tracking-tight text-white block leading-none">Mudassar Memon</span>
+          <span class="font-mono text-[11px] text-slate-400">SWE // Full-Stack & Reliability</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#work" class="hover:text-blue-400 transition">Production & Projects</a>
+        <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+        <a href="#skills" class="hover:text-blue-400 transition">Architecture & Stack</a>
+        <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="toggleCmdModal()" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700/80 text-xs font-mono text-slate-400 hover:text-white hover:border-blue-500/50 transition">
+          <i data-lucide="terminal" class="w-3.5 h-3.5 text-blue-400"></i>
+          <span>Quick Nav</span>
+          <kbd class="px-1.5 py-0.5 text-[10px] bg-slate-800 text-slate-300 rounded">⌘K</kbd>
+        </button>
+        <a href="mailto:mudassar95memon@gmail.com" class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold transition shadow-lg shadow-blue-600/25">
+          Hire / Connect
+        </a>
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-300 hover:bg-slate-800">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95 px-4 pt-3 pb-5 space-y-2 text-sm">
+      <a href="#work" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-blue-400">Production & Projects</a>
+      <a href="#experience" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-blue-400">Experience</a>
+      <a href="#skills" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-blue-400">Architecture & Stack</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-blue-400">Contact</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-20">
+
+    <!-- HERO SECTION -->
+    <section class="grid lg:grid-cols-12 gap-10 items-center pb-20 border-b border-slate-800/80">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Available for Full-Stack, Frontend, Backend, FDE & SDET Roles (NYC / Remote)
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+          Building production web apps & <span class="gradient-text">high-reliability</span> systems at scale.
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+          I'm <strong class="text-white">Mudassar Memon</strong>, a Software Engineer combining full-stack product delivery (<span class="text-blue-400 font-mono text-sm">React, Next.js, TypeScript, Rails, Node.js</span>) with 2.5 years of automation architecture at <strong class="text-white">QA Wolf</strong>—where I engineered ~600 E2E tests across 60 SaaS applications—and 6 years leading $60M–$80M engineering projects.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-3.5 pt-2">
+          <a href="#work" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center gap-2 shadow-lg shadow-blue-600/25 transition">
+            <span>Explore Production Work</span>
+            <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+          </a>
+          <a href="https://github.com/MudassarMemon" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl glass hover:border-slate-600 text-slate-200 font-medium text-sm flex items-center gap-2 transition">
+            <i data-lucide="github" class="w-4 h-4"></i>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/mudassarmemon/" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl glass hover:border-slate-600 text-slate-200 font-medium text-sm flex items-center gap-2 transition">
+            <i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Interactive Terminal Card -->
+      <div class="lg:col-span-5">
+        <div class="rounded-2xl glass border border-slate-700/70 overflow-hidden shadow-2xl">
+          <div class="bg-slate-900/90 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+            </div>
+            <span class="font-mono text-xs text-slate-400">mudassar@portfolio:~</span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">zsh</span>
+          </div>
+          <div class="p-5 font-mono text-xs sm:text-[13px] space-y-3 leading-relaxed text-slate-300">
+            <div>
+              <span class="text-emerald-400">➜</span> <span class="text-cyan-400">~</span> <span class="text-white">cat profile.json</span>
+            </div>
+            <pre class="text-slate-300 overflow-x-auto bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">{
+  <span class="text-blue-400">"name"</span>: <span class="text-emerald-300">"Mudassar Memon"</span>,
+  <span class="text-blue-400">"location"</span>: <span class="text-emerald-300">"NY (NYC Metro)"</span>,
+  <span class="text-blue-400">"coreStack"</span>: [
+    <span class="text-amber-300">"JavaScript"</span>, <span class="text-amber-300">"TypeScript"</span>, <span class="text-amber-300">"React"</span>,
+    <span class="text-amber-300">"Next.js"</span>, <span class="text-amber-300">"Node.js"</span>, <span class="text-amber-300">"Rails"</span>, <span class="text-amber-300">"Playwright"</span>
+  ],
+  <span class="text-blue-400">"impact"</span>: {
+    <span class="text-cyan-300">"e2eTestsEngineered"</span>: <span class="text-purple-300">"~600 across 60 SaaS apps"</span>,
+    <span class="text-cyan-300">"reattemptReduction"</span>: <span class="text-purple-300">"~80% fewer reattempts"</span>,
+    <span class="text-cyan-300">"productionSites"</span>: <span class="text-purple-300">"Delivered in &lt;30 days each"</span>,
+    <span class="text-cyan-300">"capitalProjectsLed"</span>: <span class="text-purple-300">"$60M-$80M (100% closeout)"</span>
+  },
+  <span class="text-blue-400">"education"</span>: <span class="text-emerald-300">"B.S. Civil Eng, Summa Cum Laude"</span>
+}</pre>
+            <div class="flex items-center justify-between pt-1 text-[11px] text-slate-400">
+              <span>Status: <strong class="text-emerald-400">All systems operational</strong></span>
+              <button onclick="copyEmail()" id="copyBtn" class="text-blue-400 hover:underline flex items-center gap-1">
+                <i data-lucide="copy" class="w-3 h-3"></i> Copy email
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT METRICS BAR -->
+    <section class="py-12 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 border-b border-slate-800/80">
+      <div class="glass p-5 rounded-2xl">
+        <div class="font-mono text-2xl sm:text-3xl font-bold text-white">~600</div>
+        <div class="text-xs sm:text-sm font-medium text-blue-400 mt-1">Automated E2E Tests</div>
+        <p class="text-xs text-slate-400 mt-1">Engineered across 60 client SaaS apps at QA Wolf</p>
+      </div>
+      <div class="glass p-5 rounded-2xl">
+        <div class="font-mono text-2xl sm:text-3xl font-bold text-emerald-400">~80%</div>
+        <div class="text-xs sm:text-sm font-medium text-emerald-300 mt-1">Fewer Suite Reattempts</div>
+        <p class="text-xs text-slate-400 mt-1">Cut flakiness from ~65–70% down to 10–12%</p>
+      </div>
+      <div class="glass p-5 rounded-2xl">
+        <div class="font-mono text-2xl sm:text-3xl font-bold text-cyan-400">&lt; 30 Days</div>
+        <div class="text-xs sm:text-sm font-medium text-cyan-300 mt-1">Production Delivery</div>
+        <p class="text-xs text-slate-400 mt-1">Next.js, TypeScript & Sanity CMS client launches</p>
+      </div>
+      <div class="glass p-5 rounded-2xl">
+        <div class="font-mono text-2xl sm:text-3xl font-bold text-amber-400">$60M–$80M</div>
+        <div class="text-xs sm:text-sm font-medium text-amber-300 mt-1">Project Ownership</div>
+        <p class="text-xs text-slate-400 mt-1">100+ personnel & 100% closeout rate at EW Howell</p>
+      </div>
+    </section>
+
+    <!-- PRODUCTION WORK & FULL-STACK PROJECTS -->
+    <section id="work" class="py-20 border-b border-slate-800/80">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-widest text-blue-400">// 01. Portfolio & Architecture</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Production Work & Engineering Projects</h2>
+        </div>
+
+        <!-- Interactive Filter Pills -->
+        <div class="flex flex-wrap gap-2" id="projectFilters">
+          <button onclick="filterProjects('all')" data-filter="all" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono bg-blue-600 text-white transition">All (6)</button>
+          <button onclick="filterProjects('production')" data-filter="production" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono glass text-slate-300 hover:text-white transition">Production Clients (3)</button>
+          <button onclick="filterProjects('fullstack')" data-filter="fullstack" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono glass text-slate-300 hover:text-white transition">Full-Stack Apps (2)</button>
+          <button onclick="filterProjects('algorithms')" data-filter="algorithms" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono glass text-slate-300 hover:text-white transition">Algorithms & CS (1)</button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6" id="projectsGrid">
+
+        <!-- Card 1: Priya Krishna -->
+        <article data-category="production" class="project-card glass rounded-2xl p-6 flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Production Client • Collaborative</span>
+              <a href="https://priyakrishna.me/" target="_blank" rel="noopener" class="text-xs font-mono text-blue-400 hover:underline flex items-center gap-1">
+                priyakrishna.me <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+            <h3 class="text-xl font-bold text-white">Priya Krishna — Author & NYT Journalist</h3>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Collaborated on developing and deploying a mobile-first production website showcasing published writing, cookbooks, and media coverage. Built reusable React/TypeScript UI components, custom Sanity Studio schemas, and Vercel deployment pipelines in under 30 days.
+            </p>
+          </div>
+          <div class="pt-5 mt-5 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Next.js</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">React</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">TypeScript</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Tailwind CSS</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Sanity CMS</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Vercel</span>
+          </div>
+        </article>
+
+        <!-- Card 2: Aliza Abarbanel -->
+        <article data-category="production" class="project-card glass rounded-2xl p-6 flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Production Client • Solo Ownership</span>
+              <a href="https://aliza-abarbanel.com/" target="_blank" rel="noopener" class="text-xs font-mono text-blue-400 hover:underline flex items-center gap-1">
+                aliza-abarbanel.com <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+            <h3 class="text-xl font-bold text-white">Aliza Abarbanel — Editorial Portfolio & CMS</h3>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Independently architected and launched a responsive editorial website in under one month. Designed custom Sanity Studio content schemas with field validation, empowering the client to publish articles and visual media without developer intervention.
+            </p>
+          </div>
+          <div class="pt-5 mt-5 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Next.js</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">React</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">TypeScript</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Sanity Studio</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Tailwind CSS</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Vercel</span>
+          </div>
+        </article>
+
+        <!-- Card 3: Officebook -->
+        <article data-category="fullstack" class="project-card glass rounded-2xl p-6 flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">Full-Stack Application</span>
+              <a href="https://github.com/MudassarMemon/Facespace" target="_blank" rel="noopener" class="text-xs font-mono text-blue-400 hover:underline flex items-center gap-1">
+                GitHub Repo <i data-lucide="github" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+            <h3 class="text-xl font-bold text-white">Officebook — Social Networking Platform</h3>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Full-stack social platform featuring BCrypt session authentication, friendship-based authorization gates, personalized feeds, nested comments/likes, user search, and cloud photo galleries powered by Rails Active Record, PostgreSQL, and AWS S3.
+            </p>
+          </div>
+          <div class="pt-5 mt-5 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">React</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Redux</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Ruby on Rails</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">PostgreSQL</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Active Storage</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">AWS S3</span>
+          </div>
+        </article>
+
+        <!-- Card 4: TuneUp -->
+        <article data-category="fullstack" class="project-card glass rounded-2xl p-6 flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">MERN Stack • Backend Co-Lead</span>
+              <a href="https://github.com/danielhlee4/TuneUp" target="_blank" rel="noopener" class="text-xs font-mono text-blue-400 hover:underline flex items-center gap-1">
+                GitHub Repo <i data-lucide="github" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+            <h3 class="text-xl font-bold text-white">TuneUp — Musician Networking Platform</h3>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Served as backend co-lead for a collaborative MERN application connecting local musicians for jam sessions and band formation. Architected Express.js REST routes, Mongoose schemas, event join/unjoin workflows, Passport/JWT auth, and Google Maps geolocation search.
+            </p>
+          </div>
+          <div class="pt-5 mt-5 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Node.js</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Express.js</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">MongoDB</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">React & Redux</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Passport / JWT</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Google Maps API</span>
+          </div>
+        </article>
+
+        <!-- Card 5: Binary Search Tree Visualizer -->
+        <article data-category="algorithms" class="project-card glass rounded-2xl p-6 flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-purple-500/10 text-purple-300 border border-purple-500/20">Data Structures & Algorithms</span>
+              <a href="https://mudassarmemon.github.io/Binary-Search-Tree-Visualizer/" target="_blank" rel="noopener" class="text-xs font-mono text-blue-400 hover:underline flex items-center gap-1">
+                Live Visualizer <i data-lucide="play" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+            <h3 class="text-xl font-bold text-white">Binary Search Tree Interactive Visualizer</h3>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Framework-free interactive visualizer built with vanilla JavaScript and HTML5 Canvas. Implements dynamic node insertion, deletion, lookup, and tree traversal algorithms with real-time visual feedback.
+            </p>
+          </div>
+          <div class="pt-5 mt-5 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">JavaScript (ES6+)</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">HTML5 Canvas</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">BST Algorithms</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">CSS3</span>
+          </div>
+        </article>
+
+        <!-- Card 6: PLS Mechanical -->
+        <article data-category="production" class="project-card glass rounded-2xl p-6 flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Commercial Web App</span>
+              <span class="text-xs font-mono text-slate-400">+22% Engagement</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">PLS Mechanical — Booking & SMTP Platform</h3>
+            <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+              Engineered a commercial HVAC web application using Express.js, Node.js, and interactive UI workflows (+22% session engagement), integrating automated Nodemailer SMTP pipelines for appointment bookings and consultations.
+            </p>
+          </div>
+          <div class="pt-5 mt-5 border-t border-slate-800/80 flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">JavaScript</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Node.js</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Express.js</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Nodemailer SMTP</span>
+            <span class="px-2 py-0.5 text-[11px] font-mono rounded bg-slate-800 text-slate-300">Bootstrap</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section id="experience" class="py-20 border-b border-slate-800/80">
+      <div class="mb-12">
+        <span class="font-mono text-xs uppercase tracking-widest text-blue-400">// 02. Career Trajectory</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Professional Experience</h2>
+      </div>
+
+      <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 md:before:left-8 before:w-0.5 before:bg-slate-800">
+
+        <!-- Role 1: QA Wolf -->
+        <div class="relative pl-12 md:pl-20">
+          <div class="absolute left-2 md:left-6 top-1.5 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-slate-950"></div>
+          <div class="glass p-6 sm:p-7 rounded-2xl">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-white">Software QA Engineer II <span class="text-sm font-normal text-slate-400">(Promoted from QA Engineer I)</span></h3>
+                <p class="text-sm font-medium text-blue-400">QA Wolf • New York, NY (Remote)</p>
+              </div>
+              <span class="font-mono text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300">Apr 2024 – Sep 2026</span>
+            </div>
+            <ul class="mt-4 space-y-2.5 text-sm text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Engineered <strong class="text-white">~600 automated end-to-end tests across 60 client SaaS applications</strong> (including high-growth teams such as <strong class="text-white">Captions, Motion, and Statsig</strong>) using JavaScript, TypeScript, Node.js, and Playwright.</li>
+              <li>Took primary technical ownership of a complex <strong class="text-white">Salesforce-integrated enterprise account</strong>, scaling coverage from &lt;10 to ~90 tests across 5 isolated Salesforce orgs and Google Workspace API integrations.</li>
+              <li>Architected specialized <strong class="text-white">Web3/cryptocurrency wallet automation</strong> covering browser extension interactions, mock wallet state injection, and transaction validation.</li>
+              <li>Reduced suite execution reattempts by <strong class="text-emerald-400">~80%</strong> and cut flakiness in unstable suites from <strong class="text-emerald-400">~65–70% down to 10–12%</strong> via async refactoring and test isolation.</li>
+              <li>Onboarded <strong class="text-white">~7 client engineering teams</strong> and mentored <strong class="text-white">4 QA engineers</strong> through code reviews and technical runbooks.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 2: Freelance -->
+        <div class="relative pl-12 md:pl-20">
+          <div class="absolute left-2 md:left-6 top-1.5 w-4 h-4 rounded-full bg-emerald-400 ring-4 ring-slate-950"></div>
+          <div class="glass p-6 sm:p-7 rounded-2xl">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-white">Freelance Software Engineer | Full-Stack Web Development</h3>
+                <p class="text-sm font-medium text-emerald-400">Self-Employed • Remote</p>
+              </div>
+              <span class="font-mono text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300">May 2023 – Present</span>
+            </div>
+            <ul class="mt-4 space-y-2.5 text-sm text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Delivered two production websites (<a href="https://priyakrishna.me/" target="_blank" class="text-blue-400 hover:underline">priyakrishna.me</a> & <a href="https://aliza-abarbanel.com/" target="_blank" class="text-blue-400 hover:underline">aliza-abarbanel.com</a>) in under one month each using React, Next.js, TypeScript, Tailwind CSS, and Sanity CMS.</li>
+              <li>Managed the complete lifecycle from Figma design translation and custom Sanity Studio schema architecture to Vercel deployment, domain configuration, handover documentation, and post-launch support.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 3: EW Howell -->
+        <div class="relative pl-12 md:pl-20">
+          <div class="absolute left-2 md:left-6 top-1.5 w-4 h-4 rounded-full bg-amber-400 ring-4 ring-slate-950"></div>
+          <div class="glass p-6 sm:p-7 rounded-2xl">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-white">Project Manager</h3>
+                <p class="text-sm font-medium text-amber-400">EW Howell Construction Group • Plainview, NY</p>
+              </div>
+              <span class="font-mono text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300">Aug 2017 – Jul 2023</span>
+            </div>
+            <ul class="mt-4 space-y-2.5 text-sm text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Directed full-lifecycle execution for NYCSCA public school construction projects (PS 338, IS 419, PS 464) with budgets of <strong class="text-white">$60M–$80M</strong>, delivering three of the most successful projects in company history with a <strong class="text-white">100% closeout rate</strong>.</li>
+              <li>Led multidisciplinary engineering, architecture, and field operations across <strong class="text-white">100+ daily on-site personnel</strong>, managing technical risk, critical-path schedules, and executive stakeholder alignment.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 4: Kernul -->
+        <div class="relative pl-12 md:pl-20">
+          <div class="absolute left-2 md:left-6 top-1.5 w-4 h-4 rounded-full bg-cyan-400 ring-4 ring-slate-950"></div>
+          <div class="glass p-6 sm:p-7 rounded-2xl">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-white">Web Developer</h3>
+                <p class="text-sm font-medium text-cyan-400">Kernul • New York, NY (Remote)</p>
+              </div>
+              <span class="font-mono text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300">Dec 2020 – Sep 2021</span>
+            </div>
+            <ul class="mt-4 space-y-2.5 text-sm text-slate-300 list-disc list-inside leading-relaxed">
+              <li>Built frontend interfaces and cloud-integrated workflows for a technical interview-screening SaaS platform using <strong class="text-white">React, JavaScript, Firebase, and Google Cloud Functions</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TECHNICAL ARCHITECTURE & EDUCATION -->
+    <section id="skills" class="py-20 border-b border-slate-800/80">
+      <div class="mb-10">
+        <span class="font-mono text-xs uppercase tracking-widest text-blue-400">// 03. Technical Stack & Credentials</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Architecture, Tools & Education</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+        <div class="glass p-5 rounded-2xl">
+          <div class="flex items-center gap-2 text-blue-400 font-mono text-xs uppercase mb-3">
+            <i data-lucide="code-2" class="w-4 h-4"></i> Languages
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-mono border border-slate-700">JavaScript (ES6+)</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-mono border border-slate-700">TypeScript</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Python</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Ruby</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">SQL</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <div class="glass p-5 rounded-2xl">
+          <div class="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase mb-3">
+            <i data-lucide="layout" class="w-4 h-4"></i> Frontend & CMS
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-mono border border-slate-700">React.js</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-mono border border-slate-700">Next.js</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Redux</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Tailwind CSS</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Sanity CMS</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Bootstrap</span>
+          </div>
+        </div>
+
+        <div class="glass p-5 rounded-2xl">
+          <div class="flex items-center gap-2 text-cyan-400 font-mono text-xs uppercase mb-3">
+            <i data-lucide="database" class="w-4 h-4"></i> Backend & Data
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-mono border border-slate-700">Node.js</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-mono border border-slate-700">Express.js</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Ruby on Rails</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">PostgreSQL</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">MongoDB</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="glass p-5 rounded-2xl">
+          <div class="flex items-center gap-2 text-amber-400 font-mono text-xs uppercase mb-3">
+            <i data-lucide="shield-check" class="w-4 h-4"></i> Testing & Cloud
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-mono border border-slate-700">Playwright</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-mono border border-slate-700">E2E Automation</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">AWS S3</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Vercel</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Firebase / GCP</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-slate-300 text-xs font-mono">Git & CI/CD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education & Colleague Recommendation -->
+      <div class="grid md:grid-cols-12 gap-6">
+        <div class="md:col-span-7 glass p-6 rounded-2xl space-y-4">
+          <h3 class="text-sm font-mono uppercase tracking-wider text-slate-400">Education</h3>
+          <div class="flex justify-between items-start border-b border-slate-800 pb-3">
+            <div>
+              <div class="font-bold text-white">Stony Brook University</div>
+              <div class="text-xs text-slate-300">B.S. in Civil Engineering • <span class="text-emerald-400 font-medium">Summa Cum Laude</span> (Dean's List: 8 Semesters)</div>
+            </div>
+            <span class="font-mono text-xs text-slate-400">2013 – 2017</span>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="font-bold text-white">App Academy</div>
+              <div class="text-xs text-slate-300">Full-Stack Software Engineering Immersive (1,000+ hours)</div>
+            </div>
+            <span class="font-mono text-xs text-slate-400">2023</span>
+          </div>
+        </div>
+
+        <div class="md:col-span-5 glass p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-blue-400 mb-2">
+              <span>// Peer Endorsement</span>
+              <span>QA Wolf</span>
+            </div>
+            <p class="text-xs sm:text-sm italic text-slate-300 leading-relaxed">
+              "He took on some of the toughest challenges on our team head on and exceeded expectations every single time... He made every interaction easier and every problem feel more solvable."
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-slate-400">
+            — <strong class="text-white">Zachary Stallings</strong>, Software Engineer @ QA Wolf
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FOOTER -->
+    <section id="contact" class="pt-16 pb-8 text-center max-w-2xl mx-auto space-y-6">
+      <span class="font-mono text-xs uppercase tracking-widest text-blue-400">// 04. What's Next</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Let's build something reliable.</h2>
+      <p class="text-sm sm:text-base text-slate-300">
+        Whether you need a Full-Stack Engineer to ship product features, an SDET / Reliability Architect to scale Playwright infrastructure, or a Forward-Deployed Engineer to lead complex client integrations—my inbox is open.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 pt-2">
+        <a href="mailto:mudassar95memon@gmail.com" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center gap-2 shadow-lg shadow-blue-600/25 transition">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>mudassar95memon@gmail.com</span>
+        </a>
+        <a href="tel:6316451065" class="px-5 py-3 rounded-xl glass hover:border-slate-600 text-slate-200 font-mono text-sm flex items-center gap-2 transition">
+          <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>
+          <span>631-645-1065</span>
+        </a>
+      </div>
+      <div class="pt-10 text-xs font-mono text-slate-500">
+        © 2026 Mudassar Memon • Port Washington, NY • Built with Tailwind CSS
+      </div>
+    </section>
+
+  </main>
+
+  <!-- COMMAND PALETTE MODAL (Cmd/Ctrl + K) -->
+  <div id="cmdModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-start justify-center pt-24 px-4">
+    <div class="w-full max-w-lg rounded-2xl glass border border-slate-700 shadow-2xl overflow-hidden">
+      <div class="px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+        <span class="font-mono text-xs text-slate-400">Quick Navigation & Links</span>
+        <button onclick="toggleCmdModal()" class="text-xs font-mono text-slate-400 hover:text-white">ESC</button>
+      </div>
+      <div class="p-2 space-y-1 text-sm">
+        <a href="#work" onclick="toggleCmdModal()" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800/80 text-slate-200">
+          <span class="flex items-center gap-2.5"><i data-lucide="folder-git-2" class="w-4 h-4 text-blue-400"></i> View Production Work & Projects</span>
+          <span class="font-mono text-xs text-slate-500">#work</span>
+        </a>
+        <a href="#experience" onclick="toggleCmdModal()" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800/80 text-slate-200">
+          <span class="flex items-center gap-2.5"><i data-lucide="briefcase" class="w-4 h-4 text-emerald-400"></i> View Experience Timeline</span>
+          <span class="font-mono text-xs text-slate-500">#experience</span>
+        </a>
+        <a href="https://github.com/MudassarMemon" target="_blank" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800/80 text-slate-200">
+          <span class="flex items-center gap-2.5"><i data-lucide="github" class="w-4 h-4 text-white"></i> Open GitHub Profile</span>
+          <span class="font-mono text-xs text-slate-500">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mudassarmemon/" target="_blank" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800/80 text-slate-200">
+          <span class="flex items-center gap-2.5"><i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i> Open LinkedIn Profile</span>
+          <span class="font-mono text-xs text-slate-500">↗</span>
+        </a>
+        <a href="mailto:mudassar95memon@gmail.com" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-slate-800/80 text-slate-200">
+          <span class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-amber-400"></i> Email Mudassar</span>
+          <span class="font-mono text-xs text-slate-500">mudassar95memon@gmail.com</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+
+    function toggleCmdModal() {
+      document.getElementById('cmdModal').classList.toggle('hidden');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        toggleCmdModal();
+      }
+      if (e.key === 'Escape') {
+        document.getElementById('cmdModal').classList.add('hidden');
+      }
+    });
+
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.className = 'filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono bg-blue-600 text-white transition';
+        } else {
+          btn.className = 'filter-btn px-3.5 py-1.5 rounded-lg text-xs font-mono glass text-slate-300 hover:text-white transition';
+        }
+      });
+
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function copyEmail() {
+      navigator.clipboard.writeText('mudassar95memon@gmail.com');
+      const btn = document.getElementById('copyBtn');
+      btn.innerHTML = '✓ Copied!';
+      setTimeout(() => {
+        btn.innerHTML = 'Copy email';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
